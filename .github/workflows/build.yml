@@ -20,19 +20,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Siapkan Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '6.1.1'
-
-      - name: Siapkan Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Pasang Android SDK 29
-        run: sdkmanager "platforms;android-29" "build-tools;29.0.3"
-
       - name: Build APK
-        run: gradle assembleDebug
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
 
       - name: Simpan APK
         uses: actions/upload-artifact@v4
